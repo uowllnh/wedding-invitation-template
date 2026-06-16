@@ -1,64 +1,87 @@
-import Image from "next/image";
+import Section from "./components/Section";
+import Button from "./components/Button";
+import { Phone, Smile } from "lucide-react";
+import Line from "./components/Line";
+import FamilyInfo from "./components/FamilyInfo";
+import HeroSection from "./components/HeroSection";
+import WeddingCalendar from "./components/WeddingCalendar";
+import WeddingSchedule from "./components/WeddingSchedule";
+import Location from "./components/Location";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="h-dvh overflow-hidden bg-white">
+      <main className="mx-auto h-dvh w-full max-w-107.5 overflow-x-hidden overflow-y-auto scroll-smooth bg-[#F3F2ED] shadow-xl">
+        <HeroSection
+          imageSrc="/main.png"
+          imageAlt="신랑 김건호와 신부 김유리"
+          names="Kim Geonho & Kim Yuri"
+          venue="L7 광명 바이 롯데호텔 3F 스튜디오"
+          dateTime="2026.09.19 11:00 A.M."
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        <Section
+          entitle="INVITATION"
+          title="소중한 분들을 초대합니다"
+          text={
+            <>
+              서로에게 가장 따뜻한 사람이 되어
+              <br />
+              같은 방향을 바라보며 함께 걸어가려 합니다.
+              <br />
+              <br />
+              저희 두 사람이 부부로 시작하는 날,
+              <br />
+              귀한 걸음으로 함께해 주시면
+              <br />큰 기쁨으로 간직하겠습니다.
+            </>
+          }
+        >
+          <Line className="w-21.75 my-12.5" />
+          <FamilyInfo
+            groom={{
+              parents: "김영환 · 박명순",
+              relation: "의 장남",
+              name: "김건호",
+            }}
+            bride={{
+              parents: "김성연 · 이정희",
+              relation: "의 장녀",
+              name: "김유리",
+            }}
+          />
+          <Button icon={<Phone />} text="연락하기" />
+        </Section>
+        <WeddingCalendar />
+        <WeddingSchedule />
+        <Section
+          entitle="IMFORMATION"
+          title="안내사항"
+          smtext={
+            <>
+              뷔페는 오전 10시 30분부터 오후 12시 30분까지 이용 가능합니다.
+              <br />
+              웨딩홀 운영 지침상 이용 가능 시간이 정해져 있으니,
+              <br />
+              하객 여러분께서는 식사 시간 참고 부탁드립니다.
+            </>
+          }
+        />
+        <Section
+          entitle="R.S.V.P"
+          title="참석 의사 전달"
+          smtext={
+            <>
+              신랑, 신부에게 참석의사를
+              <br />
+              미리 전달할 수 있어요.
+            </>
+          }
+        >
+          <Button icon={<Smile />} text="참석의사 전달하기" />
+        </Section>
+        <Location />
+        <Section entitle="GALLERY" title="웨딩 갤러리" />
+        <Section entitle="GUESTBOOK" title="방명록" />
       </main>
     </div>
   );

@@ -58,11 +58,13 @@ export default function Location() {
     <Section
       entitle="LOCATION"
       title="오시는 길"
-      text="L7 광명 바이 롯데호텔 3F 스튜디오홀"
+      text="예식장 이름 3F 그랜드홀"
       className="relative"
     >
-      <p className="text-[15px] text-[#858585]">경기 광명시 신길로 22</p>
-      <p className="text-[12px] mt-8">Tel. 02-2000-7100</p>
+      <p className="text-[15px] text-[#858585]">
+        서울특별시 예시구 예식로 123
+      </p>
+      <p className="text-[12px] mt-8">Tel. 02-1234-5678</p>
       <Button icon={<MapPinned strokeWidth={1.5} />} text="약도 이미지 보기" />
 
       <p className="text-[15px] mt-24">네비게이션</p>
@@ -107,7 +109,7 @@ export default function Location() {
           }}
           sub={{
             icon: <MousePointer2 strokeWidth={2} width={14} height={14} />,
-            text: "L7 광명 바이 롯데호텔 또는 광명 유플래닛 주차장 검색",
+            text: "예식장 이름 또는 예식장 주차장 검색",
           }}
           info={[
             {
@@ -144,14 +146,14 @@ export default function Location() {
           info={[
             {
               sucle: "#000FB4",
-              text: "1호선 광명역 (1호선 광명행) 서편 1번 출구",
+              text: "1호선 예시역 1번 출구",
             },
             {
               sucle: "#000FB4",
               text: (
                 <div>
-                  1호선 관악역 1번 출구 <br /> (마을버스1-1광명역 데시앙,
-                  일직동행정복지센터)
+                  2호선 샘플역 3번 출구 <br /> (마을버스 00번 예식장 정류장
+                  하차)
                 </div>
               ),
             },

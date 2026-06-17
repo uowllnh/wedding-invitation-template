@@ -1,22 +1,23 @@
 import Section from "./components/Section";
 import Button from "./components/Button";
-import { Phone, Smile } from "lucide-react";
+import { Pencil, Phone, Smile } from "lucide-react";
 import Line from "./components/Line";
 import FamilyInfo from "./components/FamilyInfo";
 import HeroSection from "./components/HeroSection";
 import WeddingCalendar from "./components/WeddingCalendar";
 import WeddingSchedule from "./components/WeddingSchedule";
 import Location from "./components/Location";
+import Account from "./components/Account";
 
 export default function Home() {
   return (
     <div className="h-dvh overflow-hidden bg-white">
       <main className="mx-auto h-dvh w-full max-w-107.5 overflow-x-hidden overflow-y-auto scroll-smooth bg-[#F3F2ED] shadow-xl">
         <HeroSection
-          imageSrc="/main.png"
-          imageAlt="신랑 김건호와 신부 김유리"
-          names="Kim Geonho & Kim Yuri"
-          venue="L7 광명 바이 롯데호텔 3F 스튜디오"
+          imageSrc="/poster1.png"
+          imageAlt="신랑 김민준과 신부 김유라"
+          names="Kim Minjun & Kim Yura"
+          venue="더링크호텔 3F 그랜드홀"
           dateTime="2026.09.19 11:00 A.M."
         />
         <Section
@@ -39,14 +40,14 @@ export default function Home() {
           <Line className="w-21.75 my-12.5" />
           <FamilyInfo
             groom={{
-              parents: "김영환 · 박명순",
+              parents: "김아버지 · 김어머니",
               relation: "의 장남",
-              name: "김건호",
+              name: "김민준",
             }}
             bride={{
-              parents: "김성연 · 이정희",
+              parents: "김아버지 · 김어머니",
               relation: "의 장녀",
-              name: "김유리",
+              name: "김유라",
             }}
           />
           <Button icon={<Phone />} text="연락하기" />
@@ -81,7 +82,41 @@ export default function Home() {
         </Section>
         <Location />
         <Section entitle="GALLERY" title="웨딩 갤러리" />
-        <Section entitle="GUESTBOOK" title="방명록" />
+        <Section
+          entitle="GUESTBOOK"
+          title="방명록"
+          text={
+            <>
+              신랑, 신부의
+              <br />
+              결혼을 축하해주세요.
+            </>
+          }
+        >
+          <Button icon={<Pencil />} text="방명록 작성하기" />
+        </Section>
+        <Account />
+        <Section
+          entitle="CAPTURE OUR MOMENTS"
+          title="스냅"
+          text={
+            <>
+              저희의 행복한 순간을 담아주세요.
+              <br />
+              예식 당일, 아래 버튼을 통해
+              <br />
+              사진을 올려주세요.
+              <br />
+              많은 참여 부탁드려요!
+            </>
+          }
+        >
+          <Button text="사진 업로드" />
+          <p className="text-center text-[#606060] text-[10px] mt-4">
+            2026-09-19 부터 <br />
+            업로드 가능합니다,
+          </p>
+        </Section>
       </main>
     </div>
   );

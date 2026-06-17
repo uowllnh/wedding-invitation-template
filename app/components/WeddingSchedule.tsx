@@ -30,7 +30,7 @@ export default function WeddingSchedule() {
     const timer = window.setInterval(updateRemainingTime, 1000);
 
     return () => window.clearInterval(timer);
-  }, [WEDDING_DATE]);
+  }, []);
 
   const totalSeconds = Math.floor((remainingTime ?? 0) / 1000);
   const days = Math.floor(totalSeconds / 86_400);
@@ -59,17 +59,17 @@ export default function WeddingSchedule() {
               <TimeItem time={sec} type="sec" />
             </div>
             <p className="mt-3 text-[14px] text-black">
-              건호, 유리의 결혼식이 <strong>{days}일 </strong> 남았습니다.
+              민준, 유라의 결혼식이 <strong>{days}일 </strong> 남았습니다.
             </p>{" "}
           </>
         </div>
       )}
       <Image
-        src="/main2.png"
+        src="/poster2.png"
         alt="서브 이미지"
         width={300}
         height={221}
-        className="mt-17"
+        className="mt-17 rounded-[15px]"
       />
     </section>
   );

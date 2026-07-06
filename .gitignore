@@ -17,6 +17,11 @@
 /.next/
 /out/
 
+# firebase
+/.firebase/
+/public/404.html
+/public/index.html
+
 # production
 /build
 

@@ -1,6 +1,5 @@
 import Section from "./components/Section";
 import Button from "./components/Button";
-import { Pencil, Phone, Smile } from "lucide-react";
 import Line from "./components/Line";
 import FamilyInfo from "./components/FamilyInfo";
 import HeroSection from "./components/HeroSection";
@@ -8,18 +7,23 @@ import WeddingCalendar from "./components/WeddingCalendar";
 import WeddingSchedule from "./components/WeddingSchedule";
 import Location from "./components/Location";
 import Account from "./components/Account";
+import ContactButton from "./components/ContactButton";
+import RSVP from "./components/RSVP";
+import GuestBook from "./components/GuestBook";
+import WeddingGallery from "./components/WeddingGallery";
+import MenuShell from "./components/MenuShell";
 
 export default function Home() {
   return (
-    <div className="h-dvh overflow-hidden bg-white">
-      <main className="mx-auto h-dvh w-full max-w-107.5 overflow-x-hidden overflow-y-auto scroll-smooth bg-[#F3F2ED] shadow-xl">
-        <HeroSection
-          imageSrc="/poster1.png"
-          imageAlt="신랑 김민준과 신부 김유라"
-          names="Kim Minjun & Kim Yura"
-          venue="더링크호텔 3F 그랜드홀"
-          dateTime="2026.09.19 11:00 A.M."
-        />
+    <MenuShell>
+      <HeroSection
+        imageSrc="/poster1.png"
+        imageAlt="신랑 김민준과 신부 김유라"
+        names="Kim Minjun & Kim Yura"
+        venue="더링크호텔 3F 그랜드홀"
+        dateTime="2026.09.19 11:00 A.M."
+      />{" "}
+      <div id="greetings" className="scroll-mt-8">
         <Section
           entitle="INVITATION"
           title="소중한 분들을 초대합니다"
@@ -50,12 +54,16 @@ export default function Home() {
               name: "김유라",
             }}
           />
-          <Button icon={<Phone />} text="연락하기" />
+          <ContactButton />
         </Section>
+      </div>
+      <div id="schedule" className="scroll-mt-8">
         <WeddingCalendar />
         <WeddingSchedule />
+      </div>
+      <div id="information" className="scroll-mt-8">
         <Section
-          entitle="IMFORMATION"
+          entitle="INFORMATION"
           title="안내사항"
           smtext={
             <>
@@ -67,57 +75,43 @@ export default function Home() {
             </>
           }
         />
-        <Section
-          entitle="R.S.V.P"
-          title="참석 의사 전달"
-          smtext={
-            <>
-              신랑, 신부에게 참석의사를
-              <br />
-              미리 전달할 수 있어요.
-            </>
-          }
-        >
-          <Button icon={<Smile />} text="참석의사 전달하기" />
-        </Section>
+      </div>
+      <div id="rsvp" className="scroll-mt-8">
+        <RSVP />
+      </div>
+      <div id="location" className="scroll-mt-8">
         <Location />
-        <Section entitle="GALLERY" title="웨딩 갤러리" />
-        <Section
-          entitle="GUESTBOOK"
-          title="방명록"
-          text={
-            <>
-              신랑, 신부의
-              <br />
-              결혼을 축하해주세요.
-            </>
-          }
-        >
-          <Button icon={<Pencil />} text="방명록 작성하기" />
-        </Section>
+      </div>
+      <div id="gallery" className="scroll-mt-8">
+        <WeddingGallery />
+      </div>
+      <div id="guestbook" className="scroll-mt-8">
+        <GuestBook />
+      </div>
+      <div id="account" className="scroll-mt-8">
         <Account />
-        <Section
-          entitle="CAPTURE OUR MOMENTS"
-          title="스냅"
-          text={
-            <>
-              저희의 행복한 순간을 담아주세요.
-              <br />
-              예식 당일, 아래 버튼을 통해
-              <br />
-              사진을 올려주세요.
-              <br />
-              많은 참여 부탁드려요!
-            </>
-          }
-        >
-          <Button text="사진 업로드" />
-          <p className="text-center text-[#606060] text-[10px] mt-4">
-            2026-09-19 부터 <br />
-            업로드 가능합니다,
-          </p>
-        </Section>
-      </main>
-    </div>
+      </div>
+      <Section
+        entitle="CAPTURE OUR MOMENTS"
+        title="스냅"
+        text={
+          <>
+            저희의 행복한 순간을 담아주세요.
+            <br />
+            예식 당일, 아래 버튼을 통해
+            <br />
+            사진을 올려주세요.
+            <br />
+            많은 참여 부탁드려요!
+          </>
+        }
+      >
+        <Button text="사진 업로드" />
+        <p className="text-center text-[#606060] text-[10px] mt-4">
+          2026-09-19 부터 <br />
+          업로드 가능합니다,
+        </p>
+      </Section>
+    </MenuShell>
   );
 }

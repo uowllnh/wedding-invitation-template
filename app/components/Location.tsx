@@ -9,14 +9,43 @@ import {
 } from "lucide-react";
 import Section from "./Section";
 import Image from "next/image";
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { AnchorHTMLAttributes, ReactNode } from "react";
 import Button from "./Button";
 import TrafficInfo from "./TrafficInfo";
 import Line from "./Line";
+import NaverMap from "./NaverMap";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+const VENUE_NAME = "L7 광명 바이 롯데호텔";
+const VENUE_DETAIL = "3F 스튜디오홀";
+const VENUE_ADDRESS = "L7 광명 바이 롯데호텔";
+
+// 실제 예식장 좌표를 넣으면 각 앱에서 도착지 길안내로 바로 연결됩니다.
+// 좌표가 없으면 주소가 입력된 검색 화면으로 연결됩니다.
+const VENUE_LAT = "37.419135";
+const VENUE_LNG = "126.883218";
+
+const DESTINATION_NAME = `${VENUE_NAME} ${VENUE_DETAIL}`;
+const DESTINATION_QUERY = `${VENUE_ADDRESS}`;
+const ENCODED_DESTINATION_NAME = encodeURIComponent(DESTINATION_NAME);
+const ENCODED_DESTINATION_QUERY = encodeURIComponent(DESTINATION_QUERY);
+const hasVenueCoordinate = true;
+
+const APP_LINKS = {
+  naverMap: hasVenueCoordinate
+    ? `nmap://route/car?dlat=${VENUE_LAT}&dlng=${VENUE_LNG}&dname=${ENCODED_DESTINATION_NAME}&appname=wedding-invitation-template`
+    : `nmap://search?query=${ENCODED_DESTINATION_QUERY}&appname=wedding-invitation-template`,
+  tMap: hasVenueCoordinate
+    ? `tmap://route?goalname=${ENCODED_DESTINATION_NAME}&goalx=${VENUE_LNG}&goaly=${VENUE_LAT}`
+    : `tmap://search?name=${ENCODED_DESTINATION_QUERY}`,
+  kakaoNavi: hasVenueCoordinate
+    ? `kakaonavi://navigate?name=${ENCODED_DESTINATION_NAME}&x=${VENUE_LNG}&y=${VENUE_LAT}&coord_type=wgs84`
+    : `kakaomap://search?q=${ENCODED_DESTINATION_QUERY}`,
+};
+
+type LocationButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   icon?: ReactNode;
   text: string;
+  href: string;
 };
 
 export function pkbt(text: string) {
@@ -29,16 +58,16 @@ export function pkbt(text: string) {
 }
 
 export function LocationBt({
+  href,
   icon,
   className = "",
-  type = "button",
   text,
   ...props
-}: ButtonProps) {
+}: LocationButtonProps) {
   return (
     <div className="flex">
-      <button
-        type={type}
+      <a
+        href={href}
         className={`flex-1 w-[108px] px-3 mt-16 flex h-12 items-center justify-center gap-1.75 rounded-[11px] border-[0.5px] border-[#C9C9C9] bg-white text-[12px] text-black  ${className}`}
         {...props}
       >
@@ -48,7 +77,7 @@ export function LocationBt({
           </span>
         )}
         {text}
-      </button>
+      </a>
     </div>
   );
 }
@@ -58,21 +87,25 @@ export default function Location() {
     <Section
       entitle="LOCATION"
       title="오시는 길"
-      text="예식장 이름 3F 그랜드홀"
+      text={`${VENUE_NAME} ${VENUE_DETAIL}`}
       className="relative"
     >
-      <p className="text-[15px] text-[#858585]">
-        서울특별시 예시구 예식로 123
-      </p>
-      <p className="text-[12px] mt-8">Tel. 02-1234-5678</p>
+      <p className="text-[15px] text-[#858585]">{VENUE_ADDRESS}</p>
+      <p className="text-[12px] text-black mt-8">Tel. 02-1234-5678</p>
+      <NaverMap
+        lat={Number(VENUE_LAT)}
+        lng={Number(VENUE_LNG)}
+        title={DESTINATION_NAME}
+      />
       <Button icon={<MapPinned strokeWidth={1.5} />} text="약도 이미지 보기" />
 
-      <p className="text-[15px] mt-24">네비게이션</p>
+      <p className="text-[15px] mt-24 text-black">네비게이션</p>
       <p className="text-[13px] mt-4 text-[#757575]">
         원하는 앱 버튼을 누르시면 길 안내가 연결됩니다.
       </p>
       <div className="flex flex-row gap-6">
         <LocationBt
+          href={APP_LINKS.naverMap}
           className="w-10"
           icon={
             <Image
@@ -85,10 +118,12 @@ export default function Location() {
           text="네이버지도"
         />
         <LocationBt
+          href={APP_LINKS.tMap}
           icon={<Image src="/t-map.png" alt="티맵" width={22} height={22} />}
           text="티맵"
         />
         <LocationBt
+          href={APP_LINKS.kakaoNavi}
           icon={
             <Image
               src="/kakao-map.png"

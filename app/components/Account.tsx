@@ -68,7 +68,7 @@ export default function Account() {
           </>
         ) : (
           <>
-            <AccountButton name="김유라" account="신한은행 110-9876-5432" />
+            <AccountButton name="김유라" account="카카오뱅크 3333-18-8602273" />
             <AccountButton name="김어머니" account="농협은행 110-9876-4545" />
           </>
         )}

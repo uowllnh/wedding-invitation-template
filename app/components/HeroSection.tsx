@@ -16,7 +16,7 @@ export default function HeroSection({
   dateTime,
 }: HeroSectionProps) {
   return (
-    <section className="flex flex-col items-center">
+    <section className="hero-enter flex flex-col items-center">
       <Image
         src={imageSrc}
         alt={imageAlt}
